@@ -7,6 +7,8 @@ var radioPlusCount    = 0;
 var radioMinusCount   = 0;
 var loadingState      = 0;
 var adapterMimeType;
+var similarFileUrls;
+var dissimilarFileUrls;
 //change plus radio button icon
 function displayPlus(clickedID){ 
 	var radioNumber = clickedID.substr(clickedID.lastIndexOf("s")+1,clickedID.length-1);	
@@ -201,6 +203,26 @@ $(document).ready(function setAvailableAdapters(){
 	}
 	$("#adapterDropDown").html('<option value="invalid">--Adapter--</option>'+availableAdapters);
 });
+
+function submitDecisionSupport(){
+	
+	var chosenAdapter  = "edu.illinois.ncsa.versus.adapter.impl.BufferedImageAdapter";
+	similarFileUrls    = ["http://isda.ncsa.illinois.edu/drupal/sites/default/files/pictures/picture-18.jpg","http://isda.ncsa.illinois.edu/drupal/sites/default/files/pictures/picture-7.jpg"];
+	dissimilarFileUrls = ["http://isda.ncsa.illinois.edu/drupal/sites/default/files/pictures/picture-25.jpg","http://isda.ncsa.illinois.edu/drupal/sites/default/files/pictures/picture-16.jpg"];
+	
+	
+	
+	//post the data
+	$.ajax({
+		type: 'POST',
+		url: 'http://localhost:8080/versus-ds-web/api/v1/decisionSupport',
+		data: "adapter="+chosenAdapter+
+			"&similarFiles="+similarFileUrls[0]+
+			"&similarFiles="+similarFileUrls[1]+
+			"&dissimilarFiles="+dissimilarFileUrls[0]+
+			"&dissimilarFiles="+dissimilarFileUrls[1]		
+	});
+}
 
 
 function validateAdapter(){

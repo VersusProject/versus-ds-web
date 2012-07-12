@@ -79,14 +79,30 @@
 					  function handleFileSelect(evt) {
 					    var files  = evt.target.files; // FileList object
 					    var output = [];	
-					    output.push('<table id="inputTable" class="table table-bordered table-striped" style="display:inline;"><th>Positive Label</th><th>Negative Label</th><th>File</th>');
+					    output.push('<table id="inputTable" class="table table-bordered table-striped" style="display:inline;"><th>Positive Label</th><th>Negative Label</th><th>File</th><th>Thumbnail</th>');
 
 					    for (var i = 0, f; f = files[i]; i++) {
-					    	//var thumbNail = generateThumbnail(files[i]);
-					      	output.push('<tr>',
+
+			                var thumbnail = '';
+				        	var reader    = new FileReader();
+				        	reader.readAsDataURL(f);
+							
+					        if (f.type.match('image*')) {
+					        	
+				        	   reader.onload = (function(theFile, thmb) {
+				        	        return function(e) {
+				        	          // Render thumbnail
+								        thmb += '<center><img src="'+e.target.result+'" title="'+escape(theFile.name)+'" width="75" height="75"/></center>';
+										document.getElementById(escape(theFile.name)).innerHTML = thmb;
+				        	        };
+				        	      })(f,thumbnail);		
+					        }
+
+					    	output.push('<tr>',
 					      	'<td><input type="radio" name="rowOptionsRadio'+i+'" id="plusOptionsRadios'+i+'" onclick="plusButtonClick(this.id)" value="+" /><i class="icon-plus"></i></td>',
 					      	'<td><input type="radio" name="rowOptionsRadio'+i+'" id="minusOptionsRadios'+i+'" onclick="minusButtonClick(this.id);checkRadioButtons()" value="-"/><i class="icon-minus"></i></td>',
 					      	'<td><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') </td>',
+					      	'<td id="'+escape(f.name)+'"><center><i class="icon-remove"></center></td>',
 					      	'</tr>');
 					    }
 						output.push('</table>');
@@ -107,7 +123,9 @@
         <div class="span6">
           <div class="hero-unit" id="results">
             <h2>Results</h2>
-            <p></p>
+            <p>
+            	<button id="testButton" class="btn btn-primary" style="width:160px" onclick="submitDecisionSupport()">TestPost</button>	
+            </p>
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           </div>
         </div><!--/span-->
