@@ -116,17 +116,24 @@
 					</script>
 				<br/><br/>		
 				<h3>Finally Submit.</h3>
-				<button id="submitButton" class="btn btn-primary disabled" style="width:160px" onclick="validateSubmission()">Submit</button>
+				<!-- <button id="submitButton" class="btn btn-primary disabled" style="width:160px" onclick="validateSubmission()">Submit</button> -->
+				<button id="mockup" class="btn btn-primary" style="width:160px" onclick="submitDecisionSupport()">Submit</button>
+				<!-- <button id="testButton" class="btn btn-primary" style="width:160px" onclick="submitDecisionSupport()">TestPost</button>  -->		
+				<!-- <button id="testButton" class="btn btn-primary" style="width:160px" onclick="uploadFile()">TestUpload</button> -->	
+				
 	     	</div>			
         </div><!--/span-->        
         
         <div class="span6">
-          <div class="hero-unit" id="results">
+          <div class="hero-unit" >
             <h2>Results</h2>
-            <p>
-            	<button id="testButton" class="btn btn-primary" style="width:160px" onclick="submitDecisionSupport()">TestPost</button>	
-            </p>
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <div id="results" font size="3">
+            <br> 
+            Once submitted the results will be displayed here.
+            <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+            </div>
+            <div id="status" font size="3">
+            </div>
           </div>
         </div><!--/span-->
       </div><!--/row-->
