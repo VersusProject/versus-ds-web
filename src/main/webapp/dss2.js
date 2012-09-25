@@ -479,7 +479,7 @@ function formatAndDisplayResults(j){
              
 		     $.plot($("#graph4"), [sp4,dp4]);
 		     
-		     var mid=[];
+		   /*  var mid=[];
 		    var dml=new Array(10);
 		     //var dml=[];
 		     var ml=[];
@@ -536,7 +536,7 @@ function formatAndDisplayResults(j){
 		                                   lines: { show: true, steps: true }
 		                               }
 		                           ]);
-		                       });
+		                       });*/
 		 
 		resultsState = true;
 	}
