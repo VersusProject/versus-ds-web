@@ -20,6 +20,7 @@ public class JettyServer {
 	public static void main(String[] args) {
 		try {
 			start(8080);
+			System.out.println("jetty Server started ...");
 		} catch (Exception e) {
 			System.out.println("Error starting jetty " + e);
 		}
