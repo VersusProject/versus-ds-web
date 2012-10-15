@@ -3,6 +3,7 @@ if (window.File && window.FileList && window.FileReader) {
 	console.log("I am inside initialization code");
 						
 	Init();
+	InitDissimilar();
 }
 				
 // initialize
@@ -105,7 +106,7 @@ function handleFileSelect(evt) {
 	  					//toggleSubmitButton();
 	  					// listFiles();
 	  				    			    
-	  InitDissimilar();				    
+	  //InitDissimilar();				    
 	 }
 	function tableinsert(msg,output){
 		document.getElementById(msg).innerHTML=output.join('');
