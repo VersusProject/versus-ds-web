@@ -34,8 +34,9 @@
     <script src="bootstrap/js/jquery-1.7.2.js"></script>
     <script src="bootstrap/js/bootstrap-alert.js"></script>
     <script type="text/javascript" src="flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="flot/jquery.flot.axislabels.js"></script>
     <!--  <script type="text/javascript" src="dss.js"></script>-->
-    <script type="text/javascript" src="dss2updated1.js"></script>
+    <script type="text/javascript" src="dss2.js"></script>
    <!--  <script>
     function capturePath(value){
     	alert(document.getElementsByName("files[]")[3].value=value);
@@ -170,6 +171,7 @@ if (window.File && window.FileList && window.FileReader) {
 	console.log("I am inside initialization code");
 						
 	Init();
+	InitDissimilar();
 }
 				
 // initialize
@@ -266,7 +268,7 @@ function handleFileSelect(evt) {
 	  					//toggleSubmitButton();
 	  					// listFiles();
 	  				    			    
-	  InitDissimilar();				    
+	  //InitDissimilar();				    
 	 }
 	function tableinsert(msg,output){
 		document.getElementById(msg).innerHTML=output.join('');
@@ -525,18 +527,35 @@ function handleFileSelect(evt) {
             <!-- <div id="results" font size="3">-->
             <div>
              <br> 
-            
-            <output id = "results">Best ExtractorMeasure Pair</output>
-            <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+            <div>
+             <br> 
+            <div>
+            <p id="heading1" font size="2"></p>
+            </div>
+            <br>
+            <output id = "results"></output>
+            <br> <br> <br> <br> <br> <br>  
             </div>
             <div id="status" font size="3">
             </div>
+            <h2> Graphs</h2>
+            <br>
+             <p id="graph1h1" font size="2"></p>
+             <br>
              <div id="graph1" style="width:600px;height:300px;"></div>
+             <br>
+             <br>
+             <p id="graph2h2" font size="2"></p>
              <div id="graph2" style="width:600px;height:300px;"></div>
+             <br>
+             <br>
+             <p id="graph3h3" font size="2"></p>
              <div id="graph3" style="width:600px;height:300px;"></div>
+             <br>
+             <br>
+             <p id="graph4h4" font size="2"></p>
              <div id="graph4" style="width:600px;height:300px;"></div> 
-             <div id="graph5" style="width:600x;height:300px;"></div> 
-             <output id="statistics">Statistics</output>
+             
           </div>
         </div><!--/span-->
       </div><!--/row-->

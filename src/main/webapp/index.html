@@ -2,16 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Versus - Distribution</title>
+    <title>Versus Decision Support </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style>
+    <style type="text/css">
       body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
       }
     </style>
     <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -27,302 +31,128 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-    
-    <script src="bootstrap/js/jquery-1.7.2.js"></script>
-    <script type="text/javascript" src="distributionScripts.js"></script>
-    
-    
-</head>
-<body>
-<div class="navbar navbar-fixed-top">
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Versus Distribution Service</a>
-          <div class="nav-collapse">
+          <a class="brand" href="#">Versus Decision Support Service</a>
+          <div class="nav-collapse collapse">
+           <!--  <p class="navbar-text pull-right">
+              n as <a href="#" class="navbar-link">Username</a>
+            </p>-->
             <ul class="nav">
-              <li class="active"><a href="VersusDistribution.html">Home</a></li>
-              <li><a href="VersusDistribution-About.html">About</a></li>
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
-    
+
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
+        <div class="span2">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Decision Support Service</li>
-              <li><a href="dss.html">Adapters</a></li>
-              <li><a href="#">Extractors</a></li>
-              <li><a href="#">Measures</a></li>
-              <li><a href="compare.html">Compare Two Files</a></li>
-              <li><a href="stat.html">Statistcs</a></li>
-              <li class="nav-header">Multi-label Support</li>
+              <li class="nav-header">QuickLinks</li>
+              <li class="active"><a href="first.html">Decision Support Service</a></li>
+              <li><a href="compare.html">Compare two files</a></li>
+              <li><a href="dssA.html">Statistics</a></li>
+              <li><a href="dss.html">Best Extractor-Measure Pair</a></li>
+             <!--  <li><a href="#">Link</a></li>
+              <li class="nav-header">Sidebar</li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
-              </ul>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>-->
+            </ul>
           </div><!--/.well -->
-        </div><!--/span 3-->
-        
-       <div class="span9">
+        </div><!--/span-->
+        <div class="span10">
           <div class="hero-unit">
-           <div class="row-fluid">
-				 <h2>Versus Distribution Service</h2>
-				  
-				  <p>Set your parameters, choose your files, and submit. See <a href="VersusDistribution-About.html">About</a> for more help. </p>
-				  <p>Results will go here <a href ="VersusDecisionSupport.html">Service</a>.</p>
-			</div>
-		</div>
-			
-		<div class="row-fluid">
-			<div class="span4">
-				<select id="adapter" onclick="setAdapterState()">
-					<option value="invalid">-Adapter-</option>
-				</select>
-			</div>
-			
-			<div class="span4">		
-				<select id="extractor" onclick="setExtractorState()">
-					<option value="invalid">-Extractor-</option>
-				</select>
-			</div>
+            <h2>Versus Decision Support Service</h2>
+            <p>Versus is a general content-based file to file comparison framework. Versus Decision Support Service leverages this framework and aims to help users of various backgrounds to decide on which methods to use specific to their needs .</p>
+            <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+          </div>
+          <div class="row-fluid">
+            <div class="span6">
+              <h2>Compare Two Files</h2>
+              <p>Do you want to compare two files specific to a similarity measure? </p>
+              <p><a class="btn" href="compare.html">View details  &raquo;</a></p>
+            </div><!--/span-->
+            <div class="span6">
+              <h2>Know Your Statistics</h2>
+              <p>Do you want to know statistics of different comparison measures for your specific files? </p>
+              <p><a class="btn" href="dssA.html">View details &raquo;</a></p>
+            </div><!--/span-->
+            <!-- <div class="span4">
+              <h2>Get Best Extractor-Measure Pair suggestion from us customized to your requirements</h2>
+              <p>If you are not sure as which similarity measure and what features to extract from your files to compare your set of files, you just need to categorize your files into similar and dissimilar files and we will find for you your best Extractor and Measure pair </p>
+              <p><a class="btn" href="dss.html">View Details &raquo;</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+          <br>
+          <br>
+          <br>
+          <div class="row-fluid">
+            <div class="span6">
+              <h2>Get Best Extractor-Measure Pair suggestion from us customized to your requirements</h2>
+              <p>If you are not sure as which similarity measure and what features to extract from your files to compare your set of files, you just need to categorize your files into similar and dissimilar files and we will find for you your best Extractor and Measure pair  </p>
+              <p><a class="btn" href="stat.html">View details &raquo;</a></p>
+            </div><!--/span-->
+        <!--     <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div><!--/span-->
+         <!--    <div class="span4">
+              <h2>Heading</h2>
+              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p><a class="btn" href="#">View details &raquo;</a></p>
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
 
-			<div class="span4">
-				<select id="measure" onclick="setMeasureState()">
-					<option value="invalid">-Measure-</option>
-				</select>
-			</div>
-	    </div>		
-	<style type="text/css">
-   #filedrag
-   {
-   
-   display: none;
-	font-weight: bold;
-	text-align: center;
-	height:100px;
-	weight:100px;
-	padding: 10px;
-	margin: 1em 0;
-	color: #555;
-	border: 5px solid grey;
-	border-radius: 7px;
-	cursor: default;
-	}
-	</style>
-	<style type="text/css">
-  #filedrag.hover
-  {
-	color: #f00;
-	border-color: #f00;
-	border-style: solid;
-	box-shadow: inset 0 3px 4px #888;
-    }
-</style>    
-	    
-	<form id="upload" action="http://localhost:8080/api/v1/files/upload" method="POST" enctype="multipart/form-data">
-	<fieldset>
-		<legend>File Upload</legend>
-	<input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
-	<div>
-		<label for="fileselect">Files to upload:</label>
-		<input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+      <hr>
 
-			<div id="filedrag">or drop files here</div>
-	    <!-- output id="list"></output-->
-	</div>    
-	  <input type="button" value="Upload" id="upload-button-id" disabled="disabled"/>
-	<!-- <div id="submitbutton">
-	<button type="submit">Upload Files</button>
-	</div>-->
-	</fieldset>
-	</form>
-<div id="messages">
-<p>Status Messages</p>
-</div>
-
-<script>
-	//file selection
-	// getElementById
-
-	function $id(id) {
-		return document.getElementById(id);
-		}
-//
-// output information
-	function Output(msg,mgid) {
-	//	var m = $id("messages");
-	var m=$id(mgid);
-		m.innerHTML = msg + m.innerHTML;
-	}
-//call initialization file
- var fd=new FormData();
- var fileUploaded=[];
-	if (window.File && window.FileList && window.FileReader) {
-		console.log("I am inside initialization code");
-		var uploadBtn=document.getElementById('upload-button-id');
-		uploadBtn.removeAttribute('disabled');
-		Init();
-	}
-//
-// initialize
-function Init() {
-		var fileselect = $id("fileselect"),
-			filedrag = $id("filedrag"),
-			submitbutton = $id("submitbutton");
-		 console.log("I am inside Init()");
-		 
-		 
-		 
-		 
-		// file select
-		fileselect.addEventListener("change", FileSelectHandler, false);
-		// is XHR2 available?
-		var xhr = new XMLHttpRequest();
-		if (xhr.upload) {
-		// file drop
-		filedrag.addEventListener("dragover", FileDragHover, false);
-		filedrag.addEventListener("dragleave", FileDragHover, false);
-		filedrag.addEventListener("drop", FileSelectHandler, false);
-		filedrag.style.display = "block";
-		// remove submit button
-		//submitbutton.style.display = "none";
-		}
-}
-//file drag hover
-function FileDragHover(e) {
-		e.stopPropagation();
-		e.preventDefault();
-		e.target.className = (e.type == "dragover" ? "hover" : "");
-	}
-function FileSelectHandler(e) {
-	// cancel event and hover styling
-		FileDragHover(e);
-	// fetch FileList object
-		var files = e.target.files || e.dataTransfer.files;
-	// process all File objects
-		// var fd=new FormData();
-		for (var i = 0, f; f = files[i]; i++) {
-			ParseFile(f);
-			//fd.append(f.name,f);
-		     UploadFile(f);
-	    }
-		/*var uploadBtn=document.getElementById('upload-button-id');
-		uploadBtn.onclick=function(evt){
-			console.log("I am inside click function");
-			if(fd == null)
-				console.log("fd is null");
-			else
-		      UploadFile(fd);
-		}*/
-	}
-
-// upload JPEG files
-function UploadFile(file) {
-	if(file==null)
-		console.log("form data is null");
-	var xhr = new XMLHttpRequest();
-	if (xhr.upload) {
-		// start upload
-		xhr.upload.addEventListener('loadstart',onloadstartHandler,false);
-		xhr.upload.addEventListener('progress',onprogressHandler,false);
-		xhr.upload.addEventListener('load', onloadHandler,false);
-		xhr.addEventListener('readystatechange',onreadystatechangeHandler,false);
-		//xhr.setRequestHeader("X_FILENAME", file.name);
-		fd=new FormData();
-		fd.append(file.name,file);
-		xhr.open("POST", $id("upload").action, true);
-		xhr.send(fd);
-		//xhr.send(file);
-	}
-	else{
-		console.log("xhr upload failed");
-	}
-	/*xhr.onreadystatechange=function(id){
-		if (this.readyState==4){
-			if(this.status==200){
-				console.log(id);
-				  fileUploaded.push(id);
-				  Output(id,"result");
-				//getDecisionSupport(id);
-			}
-		}
-}*/
-}
-
-//Handle the start of the transmission
-function onloadstartHandler(evt) {
-  var div = document.getElementById('upload-status');
-  div.innerHTML = 'Upload started!';
-}
-
-// Handle the end of the transmission
-function onloadHandler(evt) {
-  var div = document.getElementById('upload-status');
-  div.innerHTML = 'Upload successful!';
-}
-
-// Handle the progress
-function onprogressHandler(evt) {
-  var div = document.getElementById('progress');
-  var percent = evt.loaded/evt.total*100;
-  div.innerHTML = 'Progress: ' + percent + '%';
-}
-
-// Handle the response from the server
-
-
-function onreadystatechangeHandler(evt) {
-  var status = null;
-  var readyState=null;
-
-  try {
-    status = evt.target.status;
-    readyState=evt.target.readyState;
-  }
-  catch(e) {
-    return;
-  }
-
-  if (readyState==4){
-	  if(status == '200' && evt.target.responseText) {
-	  console.log(evt.target.responseText);
-	  fileUploaded.push(evt.target.responseText);
-	  Output(evt.target.responseText,"result");
-	  
-  //  var result = document.getElementById('result');
-   // result.innerHTML = '<p>The server saw it as:</p><pre>' + evt.target.responseText + '</pre>';
-	  }
-  }
-  console.log(fileUploaded.length);
-}
-function ParseFile(file) {
-	Output(
-		"<p>File information: <strong>" + file.name +
-		"</strong> type: <strong>" + file.type +
-		"</strong> size: <strong>" + file.size +
-		"</strong> bytes</p>","messages"
-	);
-}
-</script>
- 
-		 <!-- Placeholders for messages set by event handlers -->
-  <p id="upload-status"></p>
-  <p id="progress"></p>
-  <pre id="result"></pre>    
-	  <footer>
-        <p>NCSA -- ISDA</p>
+      <footer>
+        <p>NCSA-ISDA 2012</p>
       </footer>
-      </div>
-      </div> <!-- row fluid container-->
-	</div> <!-- /container -->
-</body>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap/js/jquery-1.7.2.js"></script>
+  <!--  <script src="bootstrap/js/bootstrap-transition.js"></script>-->
+    <script src="bootstrap/js/bootstrap-alert.js"></script>
+   <!--  <script src="bootstrap/js/bootstrap-modal.js"></script>
+   <!--  <script src="bootstrap/js/bootstrap-dropdown.js"></script>
+   <!--  <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>-->
+
+  </body>
 </html>

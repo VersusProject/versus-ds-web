@@ -328,7 +328,7 @@ function formatAndDisplayResults(j){
 		$("#loadingBar").remove();
 		console.log("I am inside format and Display");
 		var output=[];
-		output.push('<table class="table table-bordered table-striped" style="display:inline;"><th>Rank</th><th>Extractor</th><th>Measure</th><th>PEvalue</th>');
+		/*output.push('<table class="table table-bordered table-striped" style="display:inline;"><th>Rank</th><th>Extractor</th><th>Measure</th><th>PEvalue</th>');
 		//var results="<table class='table table-bordered table-striped' style='display:inline;'><th>Rank</th><th>Extractor</th><th>Measure/th><th>PEvalue</th>";
 		//results=;
 		
@@ -346,42 +346,28 @@ function formatAndDisplayResults(j){
 
 		//$("#results").html("<br/><u>The Best Extractor / Measure Pairs are:</u> <br><br>"+results);
 				
-		 document.getElementById('results').innerHTML=output.join('');
+		// document.getElementById('results').innerHTML=output.join('');*/
 		// $("#results").html("<br/><u>The Best Extractor / Measure Pairs are:</u> <br><br>"+output.join(''));
 		 
 		 
 		
-		// $(function () {
-		    // var d1 = [];
-		     //for (var i = 0; i < 14; i += 0.5)
-		     //    d1.push([i, Math.sin(i)]);
-		     var s1=j.distanceValues.substring(0,j.distanceValues.indexOf("(1)")).split(",");
+		
+		   /* var s1=j.distanceValues.substring(0,j.distanceValues.indexOf("(1)")).split(",");
               console.log("distancevalues s1:",s1);
               var sp1=[];
               
-             // var snumber=[];
-		   // for(var i=0;i<s1.length;i++){
-           // 	  snumber[i]=0.0;
-            // }
-             
+                          
               for(var i=1;i<s1.length;i++)
             	{
             	  
-            	 // snumber[i]=Number(s1[i]);
-            	  sp1.push([i,Number(s1[i])]);
+            	  	  sp1.push([i,Number(s1[i])]);
             	}  
              
              var d1=j.distanceValues.substring(j.distanceValues.indexOf("(1)")+3,j.distanceValues.indexOf("{1}")).split(",");
               console.log("distancevalues d1:",d1);
               var dp1=[];
              
-             // var dnumber=[];
-              
-		     //for(var i=0;i<d1.length;i++){
-            //	  dnumber[i]=0.0;
-            	//  df[i]=0;
-             // }
-              
+                           
               for(var i=1;i<d1.length;i++){
             	 // dnumber[i]=Number(d1[i]);
             	  dp1.push([i,Number(d1[i])]);
@@ -390,29 +376,22 @@ function formatAndDisplayResults(j){
               
               
 		     $.plot($("#graph1"), [sp1,dp1]);
-		// });
+		
 		      var s2=j.distanceValues.substring(j.distanceValues.indexOf("{1}")+3,j.distanceValues.indexOf("(2)")).split(",");
 		      console.log("distancevalues s2:",s2);
 	             var sp2=[];
-	             //for(var i=0;i<s2.length;i++){
-	           	 //  snumber[i]=0.0;
-	           	 // }
+	            
 	             
 	             for(var i=1;i<s2.length;i++){
-	            	 //snumber[i]=Number(s2[i]);
-	           	      sp2.push([i,Number(s2[i])]);
+	            	  sp2.push([i,Number(s2[i])]);
 	           	  }
 	             
 	             var d2=j.distanceValues.substring(j.distanceValues.indexOf("(2)")+3,j.distanceValues.indexOf("{2}")).split(",");
 	             console.log("distancevalues d2:",d2);
 	             var dp2=[];
-	           //for(var i=0;i<d2.length;i++){
-	           //	  dnumber[i]=0.0;
-	           //	 }
-	              
+	          	              
 	             for(var i=1;i<d2.length;i++){
-	            	 //dnumber[i]=Number(d2[i]);
-	           	  dp2.push([i,Number(d2[i])]);
+	            	 dp2.push([i,Number(d2[i])]);
 	           	  }
 	             
 	             
@@ -423,25 +402,18 @@ function formatAndDisplayResults(j){
 			     var s3=j.distanceValues.substring(j.distanceValues.indexOf("{2}")+3,j.distanceValues.indexOf("(3)")).split(",");
 			      console.log("distancevalues s3:",s3);
 		             var sp3=[];
-		           /*  for(var i=1;i<s3.length;i++){
-		           	   snumber[i]=0.0;
-		           	  }*/
+		           
 		             
 		             for(var i=1;i<s3.length;i++){
-		            	 //snumber[i]=Number(s3[i]);
-		           	      sp3.push([i,Number(s3[i])]);
+		            	 sp3.push([i,Number(s3[i])]);
 		           	  }
 		             
 		             var d3=j.distanceValues.substring(j.distanceValues.indexOf("(3)")+3,j.distanceValues.indexOf("{3}")).split(",");
 		             console.log("distancevalues d3:",d3);
 		             var dp3=[];
-		           //for(var i=0;i<d3.length;i++){
-		           //	  dnumber[i]=0.0;
-		          // 	 }
-		              
+		           		              
 		             for(var i=1;i<d3.length;i++){
-		            //	 dnumber[i]=Number(d3[i]);
-		           	  dp3.push([i,Number(d3[i])]);
+		                  	  dp3.push([i,Number(d3[i])]);
 		           	  }
 		             
 		             
@@ -454,30 +426,23 @@ function formatAndDisplayResults(j){
 		     		     
              console.log("distancevalues s4:",s4);
              var sp4=[];
-            // for(var i=0;i<s4.length;i++){
-           	//   snumber[i]=0.0;
-           	//  }
-             
+                         
              for(var i=1;i<s4.length;i++){
-            	 //snumber[i]=Number(s4[i]);
-           	      sp4.push([i,Number(s4[i])]);
+            	  	      sp4.push([i,Number(s4[i])]);
            	  }
              
             var d4=j.distanceValues.substring(j.distanceValues.indexOf("(4)")+3,j.distanceValues.indexOf("{4}")).split(",");
              console.log("distancevalues d4:",d4);
              var dp4=[];
-           //for(var i=0;i<d4.length;i++){
-           //	  dnumber[i]=0.0;
-           //	 }
-              
+                        
              for(var i=1;i<d4.length;i++){
-            	 //dnumber[i]=Number(d4[i]);
+            	 
            	  dp4.push([i,Number(d4[i])]);
            	  }
              
              
              
-		     $.plot($("#graph4"), [sp4,dp4]);
+		     $.plot($("#graph4"), [sp4,dp4]);*/
 		     
 		     var mid=[];
 		    var dml=new Array(10);
@@ -501,54 +466,12 @@ function formatAndDisplayResults(j){
 		    	 ml=j.MeasureSpread.substring(j.MeasureSpread.indexOf("("+k+")")+3,j.MeasureSpread.indexOf("{"+k+"}")).split(",");
 		    	 console.log(ml);
 		    	 output1.push('<tr>','<td>',k+1,'</td>','<td>',mid[k],'</td>','<td>',ml[0],'</td>','<td>',ml[1],'</td>','</tr>');
-               /*dml[k]=new Array(ml.length-1);
-               for(var i=0;i<(ml.length-1);i++){
-            	   dml[k][i]=ml[i];
-            	   //dml.push([k,ml[i]]);
-            	   console.log("dml[",k,"]=",dml[k]);
-                }
-               console.log(dml);*/
-              
+                            
 		    }
 		    output1.push('</table>');
 		    document.getElementById('statistics').innerHTML=output1.join('');
 			
-			//for(k=0;k<10,k++){
-				
-			//}
-		    
-		    	
-		    //$.plot($("#graph5"),[dml[0],]);
-		     
-		  /*  $.plot($("#graph5"), [
-		                               {
-		                                   data: dml[0],
-		                                   lines: { show: true, fill: true }
-		                               },
-		                               
-		                              {
-		                                   data: dml[1],
-		                                   bars: { show: true }
-		                               }
-		                               /*{
-		                                   data: dml[2],
-		                                   points: { show: true }
-		                               },
-		                               {
-		                                   data: dml[3],
-		                                   lines: { show: true }
-		                               },
-		                               {
-		                                   data: dml[4],
-		                                   lines: { show: true },
-		                                   points: { show: true }
-		                               },
-		                               {
-		                                   data: dml[5],
-		                                   lines: { show: true, steps: true }
-		                               }*/
-		                          // ]);*/
-		                     
+					                     
 		 
 		resultsState = true;
 	}

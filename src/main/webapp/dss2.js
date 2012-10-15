@@ -261,7 +261,7 @@ function submitDecisionSupport(){
 	url: 'http://localhost:8080/api/v1/decisionSupport',
 	data:data
     }).done( function( id ) {
-	$("#results").html('<br> <br> <br> <br> <br> <br> <div id="loadingBar" class="progress progress-striped active"><div class="bar"style="width: 100%;"></div></div><br> <br> <br> <br> <br>');
+	$("#results").html('<br> <br> <br> <br>  <div id="loadingBar" class="progress progress-striped active"><div class="bar"style="width: 100%;"></div></div><br> <br> <br> <br>');
 	getDecisionSupport(id);
 });
 		}
@@ -331,7 +331,20 @@ function formatAndDisplayResults(j){
 		output.push('<table class="table table-bordered table-striped" style="display:inline;"><th>Rank</th><th>Extractor</th><th>Measure</th><th>PEvalue</th>');
 		//var results="<table class='table table-bordered table-striped' style='display:inline;'><th>Rank</th><th>Extractor</th><th>Measure/th><th>PEvalue</th>";
 		//results=;
-		
+		var pair1e=j.rankedResults.substring(4,j.rankedResults.indexOf("1-"));
+		var pair1m=j.rankedResults.substring(j.rankedResults.indexOf("1-")+2,j.rankedResults.indexOf("1:"));
+		var pair2e=j.rankedResults.substring(j.rankedResults.indexOf("2.)")+3,j.rankedResults.indexOf("2-"));
+		var pair2m=j.rankedResults.substring(j.rankedResults.indexOf("2-")+2, j.rankedResults.indexOf("2:"));
+		var pair3e=j.rankedResults.substring(j.rankedResults.indexOf("3.)")+3,j.rankedResults.indexOf("3-"));
+		var pair3m=j.rankedResults.substring(j.rankedResults.indexOf("3-")+2, j.rankedResults.indexOf("3:"));
+		var pair4e=j.rankedResults.substring(j.rankedResults.indexOf("4.)")+3,j.rankedResults.indexOf("4-"));
+		var pair4m=j.rankedResults.substring(j.rankedResults.indexOf("4-")+2, j.rankedResults.indexOf("4:"));
+         var suf1="Rank 1: "+pair1e+"-"+pair1m+" pair";
+         var suf2="Rank 2: "+pair2e+"-"+pair2m+" pair";
+         var suf3="Rank 3: "+pair3e+"-"+pair3m+" pair";
+         var suf4="Rank 4: "+pair4e+"-"+pair4m+" pair";
+         var head="Best Extractor-Measure Pairs";
+		Output(head,"heading1");
 		output.push('<tr>','<td>',1,'</td>','<td>',j.rankedResults.substring(4,j.rankedResults.indexOf("1-")),'</td>','<td>',j.rankedResults.substring(j.rankedResults.indexOf("1-")+2,j.rankedResults.indexOf("1:")),'</td>','<td>',j.rankedResults.substring(j.rankedResults.indexOf("1:")+2,j.rankedResults.indexOf("2.)")-1),'</td>','</tr>',
 				'<tr>','<td>',2,'</td>','<td>',j.rankedResults.substring(j.rankedResults.indexOf("2.)")+3,j.rankedResults.indexOf("2-")),'</td>','<td>',j.rankedResults.substring(j.rankedResults.indexOf("2-")+2, j.rankedResults.indexOf("2:")),'</td>','<td>',j.rankedResults.substring( j.rankedResults.indexOf("2:")+2, j.rankedResults.indexOf("3.)")-1 ),'</td>','</tr>',
 				'<tr>','<td>',3,'</td>','<td>',j.rankedResults.substring(j.rankedResults.indexOf("3.)")+3,j.rankedResults.indexOf("3-")),'</td>','<td>',j.rankedResults.substring(j.rankedResults.indexOf("3-")+2, j.rankedResults.indexOf("3:")),'</td>','<td>',j.rankedResults.substring( j.rankedResults.indexOf("3:")+2, j.rankedResults.indexOf("4.)")-1 ),'</td>','</tr>',
@@ -388,8 +401,36 @@ function formatAndDisplayResults(j){
             	  }
               
               
+              var options = {
+            	        xaxes: [{
+            	            axisLabel: 'Similarity Values (x)',
+            	        }],
+            	        yaxes: [{
+            	            position: 'left',
+            	            axisLabel: 'Probaility Density Function : p(x)',
+            	        }, {
+            	            position: 'right',
+            	            axisLabel: 'bleem'
+            	        }],
+            	        HtmlText: true,
+                        title: "My Plot"
+            	    };
+               
+               Output(suf1,"graph1h1");
+              //var m=document.getElementById("#graph1h1");
+             // m.innerHTML=pair1e+"-"+pair1m+m.innerHTML;
+              //$("graph1h1").html(pair1e);
               
-		     $.plot($("#graph1"), [sp1,dp1]);
+		     $.plot($("#graph1"),
+		    		 [{
+		    			 label: "Similar Files",
+		    			 data: sp1
+		    			 },
+		    		  {label: "Disimilar Files",
+		    		   data:   dp1
+		    		  }
+		    		], options
+		        );
 		// });
 		      var s2=j.distanceValues.substring(j.distanceValues.indexOf("{1}")+3,j.distanceValues.indexOf("(2)")).split(",");
 		      console.log("distancevalues s2:",s2);
@@ -417,8 +458,22 @@ function formatAndDisplayResults(j){
 	             
 	             
 	             
-			     $.plot($("#graph2"), [sp2,dp2]);
-		      
+			     //$.plot($("#graph2"), [sp2,dp2]);
+	             Output(suf2,"graph2h2");
+	             $.plot($("#graph2"),
+			    		 [{
+			    			 label: "Similar Files",
+			    			 data: sp2
+			    			 },
+			    		  {label: "Disimilar Files",
+			    		   data:   dp2
+			    		  }
+			    		], options
+			        );
+	             
+	             
+	             
+	             
 		      
 			     var s3=j.distanceValues.substring(j.distanceValues.indexOf("{2}")+3,j.distanceValues.indexOf("(3)")).split(",");
 			      console.log("distancevalues s3:",s3);
@@ -445,8 +500,18 @@ function formatAndDisplayResults(j){
 		           	  }
 		             
 		             
-		             
-				     $.plot($("#graph3"), [sp3,dp3]);
+		             Output(suf3,"graph3h3");
+				   //  $.plot($("#graph3"), [sp3,dp3]);
+		             $.plot($("#graph3"),
+				    		 [{
+				    			 label: "Similar Files",
+				    			 data: sp3
+				    			 },
+				    		  {label: "Disimilar Files",
+				    		   data:   dp3
+				    		  }
+				    		], options
+				        );
 		      
 		      
 		 
@@ -476,8 +541,18 @@ function formatAndDisplayResults(j){
            	  }
              
              
-             
-		     $.plot($("#graph4"), [sp4,dp4]);
+             Output(suf4,"graph4h4");
+		    // $.plot($("#graph4"), [sp4,dp4]);
+             $.plot($("#graph4"),
+		    		 [{
+		    			 label: "Similar Files",
+		    			 data: sp4
+		    			 },
+		    		  {label: "Disimilar Files",
+		    		   data:   dp4
+		    		  }
+		    		], options
+		        );
 		     
 		   /*  var mid=[];
 		    var dml=new Array(10);
