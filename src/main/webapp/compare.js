@@ -230,7 +230,7 @@ function handleFileSelect(evt) {
 								//xhr.setRequestHeader("X_FILENAME", file.name);
 								fd=new FormData();
 								fd.append(file.name,file);
-								xhr.open("POST", "http://localhost:8080/api/v1/files/upload", true);
+								xhr.open("POST", "http://localhost:8180/api/v1/files/upload", true);
 								xhr.send(fd);
 								//xhr.send(file);
 							}
@@ -251,7 +251,7 @@ function handleFileSelect(evt) {
 								//xhr.setRequestHeader("X_FILENAME", file.name);
 								fd=new FormData();
 								fd.append(file.name,file);
-								xhr.open("POST", "http://localhost:8080/api/v1/files/upload", true);
+								xhr.open("POST", "http://localhost:8180/api/v1/files/upload", true);
 								xhr.send(fd);
 								//xhr.send(file);
 							}
@@ -283,7 +283,7 @@ function handleFileSelect(evt) {
 								  console.log("File: " + file.name);
 								  var obj=new Object();
 								  obj.name=file.name;
-								  obj.url="http://localhost:8080/api/v1/files/"+evt.target.responseText;
+								  obj.url="http://localhost:8180/api/v1/files/"+evt.target.responseText;
 								  xMap.push(obj);
 								  console.log("fileUploaded response",fileUploaded[fileUploaded.length-1]);
 								  console.log("fileUploaded responseLength:",fileUploaded.length);
@@ -322,7 +322,7 @@ function handleFileSelect(evt) {
 									  console.log("File: " + file.name);
 									  var obj=new Object();
 									  obj.name=file.name;
-									  obj.url="http://localhost:8080/api/v1/files/"+evt.target.responseText;
+									  obj.url="http://localhost:8180/api/v1/files/"+evt.target.responseText;
 									  x1Map.push(obj);
 									  console.log("fileUploaded response",fileUploaded1[fileUploaded1.length-1]);
 									  console.log("fileUploaded responseLength:",fileUploaded1.length);

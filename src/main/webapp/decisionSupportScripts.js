@@ -207,12 +207,12 @@ function submitDecisionSupport(){
 	$.ajax({
 		type: 'POST',
 		url: 'http://localhost:8080/api/v1/decisionSupport',
-		data: "adapter="+chosenAdapter+
+		data:"adapter="+chosenAdapter+
 			"&similarFiles="+similarFileUrls[0]+
 			"&similarFiles="+similarFileUrls[1]+
 			"&dissimilarFiles="+dissimilarFileUrls[0]+
-			"&dissimilarFiles="+dissimilarFileUrls[1]		
-	}).done( function( id ) {
+			"&dissimilarFiles="+dissimilarFileUrls[1]	
+	    }).done( function( id ) {
 		$("#results").html('<br> <br> <br> <br> <br> <br> <div id="loadingBar" class="progress progress-striped active"><div class="bar"style="width: 100%;"></div></div><br> <br> <br> <br> <br>');
 		getDecisionSupport(id);
 	});
@@ -252,7 +252,7 @@ function formatAndDisplayResults(j){
 }
 
 function getAdapters() {
-	$.getJSON('http://localhost:8080/api/v1/adapters/', function(json){
+	$.getJSON('api/v1/adapters/', function(json){
 		setAdapterList(json);
 	});
 }

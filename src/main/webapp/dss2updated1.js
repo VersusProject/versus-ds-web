@@ -258,7 +258,7 @@ function submitDecisionSupport(){
 	"&dissimilarFiles="+dissimilarFileUrls[1];*/
 	$.ajax({
 	type: 'POST',
-	url: 'http://localhost:8080/api/v1/decisionSupport',
+	url: 'http://localhost:8180/api/v1/decisionSupport',
 	data:data
     }).done( function( id ) {
 	$("#results").html('<br> <br> <br> <br> <br> <br> <div id="loadingBar" class="progress progress-striped active"><div class="bar"style="width: 100%;"></div></div><br> <br> <br> <br> <br>');
@@ -266,7 +266,7 @@ function submitDecisionSupport(){
 });
 		}
 function getDecisionSupport(id){
-	$.getJSON('http://localhost:8080/api/v1/decisionSupport/'+id, function(json) {
+	$.getJSON('http://localhost:8180/api/v1/decisionSupport/'+id, function(json) {
 		formatAndDisplayResults(json);
 	});
 }
@@ -283,7 +283,7 @@ function submitComparison(){
 	//console.log("data1",data1);
 	$.ajax({
 		type: 'POST',
-		url: 'http://localhost:8080/api/v1/comparisons',
+		url: 'http://localhost:8180/api/v1/comparisons',
 		data:data1
 	    }).done( function( id ) {
 		//$("#results").html('<br> <br> <br> <br> <br> <br> <div id="loadingBar" class="progress progress-striped active"><div class="bar"style="width: 100%;"></div></div><br> <br> <br> <br> <br>');
@@ -292,7 +292,7 @@ function submitComparison(){
 }
 
 function getComparison(id){
-	$.getJSON('http://localhost:8080/api/v1/comparisons/'+id+'/value', function(json) {
+	$.getJSON('http://localhost:8180/api/v1/comparisons/'+id+'/value', function(json) {
 		formatAndDisplayComparisonResults(json);
 		
 		/*console.log("I am inside getJSON");
