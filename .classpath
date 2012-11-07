@@ -25,5 +25,8 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/versus-core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/versus-image"/>
 	<classpathentry kind="lib" path="/versus-image/lib/im2learn-2.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/smruti/NCSAResearch/webworkspace/jackson-core-asl-1.9.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/smruti/NCSAResearch/webworkspace/jackson-mapper-asl-1.9.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/smruti/NCSAResearch/webworkspace/jackson-xc-1.9.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
