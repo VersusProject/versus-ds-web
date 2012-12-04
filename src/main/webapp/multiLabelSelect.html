@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Versus Decision Support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
+    
+    <script src="bootstrap/js/jquery-1.7.2.js"></script>
+    <script src="bootstrap/js/bootstrap-alert.js"></script>
+    <script type="text/javascript" src="flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="flot/jquery.flot.axislabels.js"></script>
+    <!--  <script type="text/javascript" src="dss.js"></script>-->
+    <script type="text/javascript" src="multiSelect.js"></script>
+   
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top" align="left">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">Versus Decision Support Service</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="VersusDecisionSupport.html">Home</a></li>
+              <li><a href="VersusDecisionSupport-About.html">About</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+        
+      <div class="row-fluid">
+      
+        <div class="span6">
+			<div class="hero-unit" id="params">	
+			    <h2>Configure your submission</h2>
+				<br/>
+				<h3>Choose the Adapter</h3>
+				<select id="adapterDropDown" onchange="setAdapterState()">
+					<option value="invalid">--Adapter--</option>
+				</select>
+				
+				<h3> Choose your Method</h3>
+			<select id="methodDropDown" onchange="setMethodState()">	
+			     <option value="invalid">--Method--</option>
+			 </select>
+			 
+			 <h3> Select your Labels/Number of Clusters</h3>
+				<select id="labelDropDown" onchange="setLabelState()">
+				<option value="invalid">--Label--</option>
+	            </select>
+				
+	<style type="text/css">			
+				#filedrag
+   {
+   
+   display: none;
+	font-weight: bold;
+	text-align: center;
+	height:100px;
+	weight:100px;
+	padding: 10px;
+	margin: 1em 0;
+	color: #555;
+	border: 5px solid grey;
+	border-radius: 7px;
+	cursor: default;
+	}
+	</style>
+ <style type="text/css">
+  #filedrag.hover
+  {
+	color: #f00;
+	border-color: #f00;
+	border-style: solid;
+	box-shadow: inset 0 3px 4px #888;
+    }
+</style>    
+	 <!-- <h3> Select your files</h3>-->  
+	<form id="upload" action="http://localhost:8080/api/v1/files/upload" method="POST" enctype="multipart/form-data">
+	<fieldset>
+		<legend>Select your files to upload</legend>
+	<input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+	<div>
+		<label for="fileselect">Files to upload:</label>
+		<input type="file" id="files" name="files[]" multiple="multiple" />
+
+			<div id="filedrag">or drop files here</div>
+	    <output id="list"></output>
+	</div>  
+	<input type="button" value="Submit" id="submit-button-id" disabled="disabled"/>  
+	  <!-- input type="button" value="Upload" id="upload-button-id" disabled="disabled"/-->
+	<!-- <div id="submitbutton">
+	<button type="submit">Upload Files</button>
+	</div>-->
+	</fieldset>
+	</form>
+				
+	 
+<script>
+					  
+if (window.File && window.FileList && window.FileReader) {
+	console.log("I am inside initialization code");
+						
+	Init();
+}
+				
+// initialize
+function Init() {
+	var files = $id("files"),
+    filedrag = $id("filedrag"),
+	submitbutton = $id("submitbutton");
+	console.log("I am inside Init()");
+												 
+	// file select
+	files.addEventListener("change", handleFileSelect, false);
+	filedrag.addEventListener("dragover", FileDragHover, false);
+	filedrag.addEventListener("dragleave", FileDragHover, false);
+	filedrag.addEventListener("drop", handleFileSelect, false);
+	filedrag.style.display = "block";
+	// remove submit button
+	//submitbutton.style.display = "none";
+	//}
+ }
+				//file drag hover
+function FileDragHover(e) {
+		e.stopPropagation();
+		e.preventDefault();
+		e.target.className = (e.type == "dragover" ? "hover" : "");
+}
+					
+function handleFileSelect(evt) {
+	 FileDragHover(evt);
+			  
+	 var files  = evt.target.files||evt.dataTransfer.files; // FileList object
+	 var output = [];	
+					    
+	var submitBtn=document.getElementById('submit-button-id');
+	submitBtn.removeAttribute('disabled');
+	output.push('<table id="inputTable" class="table table-bordered table-striped" style="display:inline;"><th>Label</th><th>File</th><th>Type</th><th>Thumbnail</th>');
+                      // output.push('<table id="inputTable" class="table table-bordered table-striped" style="display:inline;"><th>File</th><th>Type</th><th>Thumbnail</th>');
+	for (var i = 0, f; f = files[i]; i++) {
+        var thumbnail = '';
+       	var reader    = new FileReader();
+		reader.readAsDataURL(f);
+							
+		if (f.type.match('image*')) {
+					        	
+		   reader.onload = (function(theFile, thmb) {
+		    return function(e) {
+				        	          // Render thumbnail
+								        thmb += '<center><img src="'+e.target.result+'" title="'+escape(theFile.name)+'" width="75" height="75"/></center>';
+										document.getElementById(escape(theFile.name)).innerHTML = thmb;
+				        	    };
+				           })(f,thumbnail);		
+		  }
+
+		output.push('<tr id=i >',
+	    '<td><input type="text" placeholder="Type Label between (1-5)" name="labelc'+i+'" id="labelc'+i+'"/></td>',			
+		//'<td><input type="radio" name="rowOptionsRadio'+i+'" id="plusOptionsRadios'+i+'" onclick="plusButtonClick(this.id)" value="+" /><i class="icon-plus"></i></td>',
+		//'<td><input type="radio" name="rowOptionsRadio'+i+'" id="minusOptionsRadios'+i+'" onclick="minusButtonClick(this.id);checkRadioButtons()" value="-"/><i class="icon-minus"></i></td>',
+		'<td id="r"+i+"c3">', escape(f.name), '</td>',
+		'<td></strong> (', f.type || 'n/a', ') </td>',
+		'<td id="'+escape(f.name)+'"><center><i class="icon-remove"></center></td>',
+		     	'</tr>');
+					      	/*output.push('<tr id=i >',
+							      	'<td id="r"+i+"c3">', escape(f.name), '</td>',
+							      	'<td></strong> (', f.type || 'n/a', ') </td>',
+							      	'<td id="'+escape(f.name)+'"><center><i class="icon-remove"></center></td>',
+							      	'</tr>');*/
+					    	//fd.append(f.name,f);
+		UploadFile(f);
+					    	//console.log("fileSelectHandlefileUploaded[]:",fileUploaded[i]);
+		}
+		output.push('</table>');
+		document.getElementById('list').innerHTML = output.join('');
+	  	fileNum  = files.length;
+	  	fileList = files;
+	  					//checkRadioButtons();
+	  					//toggleSubmitButton();
+	  					// listFiles();
+	  				    			    
+	  				    
+	 }
+					 // document.getElementById('files').addEventListener('change', handleFileSelect, false);
+					 		
+ var submitBtn=document.getElementById('submit-button-id');
+    submitBtn.onclick=function(evt){
+    	console.log("I am inside click function");
+								//var dat="adapter="+chosenAdapter;
+								//checkRadioButtons();
+	                            //toggleSubmitButton();
+	                            
+	     //var lfd=new FormData();
+	     
+		for( var i=0; i< fileNum; i++){
+				/*if($("#plusOptionsRadios"+i).attr("checked") == "checked"){
+				  							
+				  		for(var j=0;j<fileNum;j++){	
+				  			 console.log("SimilarFiles Comparison");
+				  			 console.log("fileList.name",fileList[i].name,"XMap.name",xMap[j].name);
+				  			  if(fileList[i].name==xMap[j].name){
+				  			        data=data+"&similarFiles="+xMap[j].url;
+				  					console.log(xMap[j].url);
+				  				 }
+				  		}
+				  						
+				   }*/
+			    var lc=document.getElementById("labelc"+i);
+				console.log("value=",lc.value); 
+				
+				for(var l=1;l<=labelSelected;l++){
+					if(lc.value==l){
+						data=data+"&data"+(l-1)+"=";
+					}
+				}
+				 console.log("Label",(i+1)," Comparison");
+					for(var j=0;j<fileNum;j++){	
+			  			console.log("fileList.name",fileList[i].name,"XMap.name",xMap[j].name);
+			  			  if(fileList[i].name==xMap[j].name){
+			  			       // data=data+"&data",i,"="+xMap[j].url;
+			  			       data=data+xMap[j].url;
+			  			      // lfd.append("data0",xMap[j].url);
+			  					console.log(xMap[j].url);
+			  				 }
+			  		}
+					
+				
+				/*if(lc.value==1){
+					for(var j=0;j<fileNum;j++){	
+			  			 console.log("Label 1 Comparison");
+			  			 console.log("fileList.name",fileList[i].name,"XMap.name",xMap[j].name);
+			  			  if(fileList[i].name==xMap[j].name){
+			  			        data=data+"&data0="+xMap[j].url;
+			  			      // lfd.append("data0",xMap[j].url);
+			  					console.log(xMap[j].url);
+			  				 }
+			  		}
+				}
+				else if(lc.value==2) {
+					for(var j=0;j<fileNum;j++){	
+			  			 console.log("Label 2 Comparison");
+			  			 console.log("fileList.name",fileList[i].name,"XMap.name",xMap[j].name);
+			  			  if(fileList[i].name==xMap[j].name){
+			  			        data=data+"&data1="+xMap[j].url;
+			  			        // lfd.append("data1",xMap[j].url);
+			  					console.log(xMap[j].url);
+			  				 }
+			  		}
+				}
+				else if(lc.value==3){
+					for(var j=0;j<fileNum;j++){	
+			  			 console.log("Label 3 Comparison");
+			  			 console.log("fileList.name",fileList[i].name,"XMap.name",xMap[j].name);
+			  			  if(fileList[i].name==xMap[j].name){
+			  			        data=data+"&data2="+xMap[j].url;
+			  			        // lfd.append("data1",xMap[j].url);
+			  					console.log(xMap[j].url);
+			  				 }
+			  		}
+				}*/
+				 
+				 // if($("#labelc"+i).value!=""){
+				//	   console.log("value=",$("#labelc"+i).value);
+				 //  }
+				  					
+		 }
+								
+		/*for( var i=0; i< fileNum; i++){
+				  						 
+			 if($("#minusOptionsRadios"+i).attr("checked") == "checked"){
+				  						
+				  for(var j=0;j<fileNum;j++){
+				  					
+				  	console.log("DissimilarFiles Comparison");
+				  	console.log("fileList.name",fileList[i].name,"XMap.name",xMap[j].name);
+				  	if(fileList[i].name==xMap[j].name){
+				  		data=data+"&dissimilarFiles="+xMap[j].url;
+				  		console.log(xMap[j].url);
+				  	 }
+				  }
+				  						//data=data+"&dissimilarFiles="+"http://localhost:8080/api/v1/files/"+fileUploaded[i];
+				}		
+		  }*/
+					 
+		  //var xhr = new XMLHttpRequest();
+			//xhr.addEventListener('readystatechange', function comphandler(evt) {
+					//onreadystatechangeHandler(file,evt)
+					//console.log("File: " + file.name);
+			//		},false);
+				//xhr.setRequestHeader("X_FILENAME", file.name);
+				//fd=new FormData();
+			//	fd.append(file.name,file);
+			//	xhr.open("POST", "http://localhost:8080/api/v1/multiLabelDecisionSupport", true);
+			//	xhr.send(lfd);
+				//xhr.send(file);	 					 
+	 submitDecisionSupport();
+		  
+	}
+					
+			 
+						function UploadFile(file) {
+							//if(file==null)
+							//	console.log("form data is null");
+							var xhr = new XMLHttpRequest();
+							if (xhr.upload) {
+									xhr.addEventListener('readystatechange', function completionhandler(evt) {
+									onreadystatechangeHandler(file,evt)
+									//console.log("File: " + file.name);
+									},false);
+								//xhr.setRequestHeader("X_FILENAME", file.name);
+								fd=new FormData();
+								fd.append(file.name,file);
+								xhr.open("POST", "http://localhost:8080/api/v1/files/upload", true);
+								xhr.send(fd);
+								//xhr.send(file);
+							}
+							else{
+								console.log("xhr upload failed");
+							}
+						}
+						
+						
+							// Handle the response from the server
+
+	
+							//function onreadystatechangeHandler(evt) {
+							 function onreadystatechangeHandler(file,evt){
+							var status = 0;
+							  var readyState=0;
+							  //console.log("File name: " + evt.name);
+							  try {
+							    status = evt.target.status;
+							    readyState=evt.target.readyState;
+							  }
+							  catch(e) {
+							    return;
+							  }
+							  
+							  
+
+							  if (readyState==4){
+								  if(status == 200) {
+								  console.log(evt.target.responseText);
+								  fileUploaded.push(evt.target.responseText);
+								  //Output(evt.target.responseText,"result");
+								  console.log("File: " + file.name);
+								  var obj=new Object();
+								  obj.name=file.name;
+								  obj.url="http://localhost:8080/api/v1/files/"+evt.target.responseText;
+								  xMap.push(obj);
+								  console.log("fileUploaded response",fileUploaded[fileUploaded.length-1]);
+								  console.log("fileUploaded responseLength:",fileUploaded.length);
+							  //  var result = document.getElementById('result');
+							   // result.innerHTML = '<p>The server saw it as:</p><pre>' + evt.target.responseText + '</pre>';
+							   
+								    if (fileNum==fileUploaded.length){
+								    	for(var i=0;i<fileUploaded.length;i++)
+								    		{
+								    		console.log("Object map: X[].name",xMap[i].name,"X[].url=",xMap[i].url);
+								    		}
+										 
+										}
+							        }
+							 
+							    }
+							}
+							function $id(id) {
+								return document.getElementById(id);
+								}
+							function Output(msg,mgid) {
+								//	var m = $id("messages");
+								var m=$id(mgid);
+									m.innerHTML = msg + m.innerHTML;
+								}
+							
+					</script>
+				
+		
+				<h3>Finally Submit.</h3>
+				<!-- <button id="submitButton" class="btn btn-primary disabled" style="width:160px" onclick="validateSubmission()">Submit</button> -->
+				 <!-- <button id="mockup" class="btn btn-primary" style="width:160px" onclick="submitDecisionSupport()">Submit</button>-->
+				<!-- <input type="button" value="Upload" id="upload-button-id" disabled="disabled"/>-->
+		 	</div> <!-- hero-unit -->			
+        </div><!--/span6-->        
+        
+        <div class="span6">
+          <div class="hero-unit" >
+            <h2>Results</h2>
+            <!-- <div id="results" font size="3">-->
+            <div>
+             <br> 
+            <div>
+            <p id="heading1" font size="2"></p>
+            </div>
+            <br>
+            <output id = "results"></output>
+            <br> <br> <br> <br> <br> <br>  
+            </div>
+            <div id="status" font size="3">
+            </div>
+            <h2> Graphs</h2>
+            <br>
+            </div>
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>NCSA -- ISDA</p>
+      </footer>
+  </div>
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+  </body>
+</html>
